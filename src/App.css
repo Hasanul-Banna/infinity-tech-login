@@ -1,4 +1,35 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Exo 2', sans-serif;
 }
+ :root {
+  --color1: #6b2992;
+  --color2: #232274;
+}
+.btn-brand{
+  width : 200px;
+  color: white;
+  background-image: linear-gradient(to right , var(--color1) , var(--color2));
+}
+hr{
+  background-image: linear-gradient(to right , var(--color1) , var(--color2));
+ height: 5px;
+ width: 190px;
+}
+.btn-brand:hover {
+  color: white;
+  transition: all 2s ease-in-out;
+  background-image: linear-gradient(to right , var(--color2) , var(--color1));
 
+}
+.col-md-6{
+  padding-right: 0;
+  padding-left: 0;
+  height: 100vh;
+}
+img {
+  height: 100vh;
+}

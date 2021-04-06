@@ -8,24 +8,30 @@ import { useState } from 'react';
 function App() {
   const [mobileNumber, setMobileNumber] = useState(0);
   const [password, setPassword] = useState(0);
-
+  const axios = require('axios')
 
   const handleSubmit = (e) => {
-    if (mobileNumber > 999999999 && password > 999) {
-      const formData = new FormData()
-      formData.append('mobile', mobileNumber);
-      formData.append('Password', password);
+    const regXmobile = /^(?:\+?)?[0-9]{10}$/;
+    const checkingMobile = regXmobile.test(mobileNumber);
+    const regXpassword = /^[0-9]{1,4}$/;
+    const checkingPassword = regXpassword.test(password);
+    console.log(mobileNumber, checkingMobile, checkingPassword);
 
+    if (checkingMobile && checkingPassword) {
       const url = '52.149.222.217:5001/api/auth/login'
-      fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
+      axios({
+        method: 'post',
+        url: url,
+        data: {
+          mobile: mobileNumber,
+          password: password
         },
-        body: formData
+        headers: {
+          "Module": "JW9tc0ByZWRsdGQl",
+          "Content-Type": "application/json"
+        },
       })
-        .then(response => response.json())
-        .then(data => {
+        .then(res => {
           console.log('ok');
         })
         .catch(error => {
@@ -38,7 +44,7 @@ function App() {
             draggable: true,
             progress: undefined,
           });
-        })
+        });
     } else {
       toast.error('Number must be 10 digit long & password must be 4 digit long', {
         position: "top-right",
@@ -53,33 +59,39 @@ function App() {
     e.preventDefault();
   }
 
-
-  const MAX_VAL = 99999999;
-  const withValueLimit = (inputObj) => {
-    const { value } = inputObj;
-    if (value < MAX_VAL) return inputObj;
-  };
   return (
-    <div className="App">
-      <h1>Login</h1>
-      <form >
-        <small>Mobile : </small>
-        <NumberFormat prefix={"+44"} allowEmptyFormatting allowLeadingZeros={false} isAllowed={withValueLimit}
-          onValueChange={(values) => {
-            const { formattedValue } = values;
-            setMobileNumber(formattedValue);
-          }}
-        />
-        <br /> <br />
-        <small>password : </small>
-        <NumberFormat allowEmptyFormatting format={"####"}
-          onValueChange={(values) => {
-            const { formattedValue } = values;
-            setPassword(formattedValue);
-          }}
-        /> <br /> <br />
-        <input onClick={handleSubmit} className="btn btn-warning" type="submit" value="Login" />
-      </form>
+    <>
+      <div className="container-fluid">
+        <div className="row">
+
+          <div className="col-md-6">
+            <img src="./Login-bg.png" alt="" className="image-fluid" />
+          </div>
+
+          <div className="col-md-6 d-flex align-items-center">
+
+            <form > <h1>WELCOME</h1> <hr className="rounded-pill" />
+              <small>Mobile No : </small>
+              <NumberFormat prefix={"+44"} allowEmptyFormatting allowLeadingZeros={false}
+                onValueChange={(values) => {
+                  const { formattedValue } = values;
+                  setMobileNumber(formattedValue);
+                }}
+              />
+              <br /> <br />
+              <small>password : </small>
+              <NumberFormat allowEmptyFormatting format={"####"}
+                onValueChange={(values) => {
+                  const { formattedValue } = values;
+                  setPassword(formattedValue);
+                }}
+              /> <br /> <br />
+              <input onClick={handleSubmit} className="btn btn-brand rounded-pill" type="submit" value="Login" />
+            </form>
+          </div>
+        </div>
+      </div>
+
       <ToastContainer
         position="top-center"
         autoClose={2000}
@@ -91,7 +103,7 @@ function App() {
         draggable
         pauseOnHover
       />
-    </div>
+    </>
   );
 }
 
