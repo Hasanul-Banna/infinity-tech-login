@@ -1,0 +1,29 @@
+.sidebar .d-flex p{
+    font-size: 18px;
+
+}
+.sidebar .d-flex i{
+    margin: 6px 15px;
+    font-size: 16px;
+}
+.sidebar{
+    position: relative;
+    height : 90vh;
+    background: #3c4b64;
+    color: #ced2d8;
+    padding-left: 0px;
+    overflow-x: hidden;
+    transition: all .6s ease-in-out;
+}
+@media only screen and (max-width: 600px) {
+    .sidebar{
+        position: absolute;
+        top: 50px;
+        height : 90vh;
+        background: #3c4b64;
+        color: #ced2d8;
+        padding-left: 0px;
+        overflow-x: hidden;
+        transition: all .6s ease-in-out;
+    }
+  }

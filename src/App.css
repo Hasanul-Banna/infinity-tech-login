@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300&display=swap'); */
 *{
   margin: 0;
   padding: 0;
@@ -9,7 +9,7 @@
   --color1: #6b2992;
   --color2: #232274;
 }
-.btn-brand{
+/* .btn-brand{
   width : 200px;
   color: white;
   background-image: linear-gradient(to right , var(--color1) , var(--color2));
@@ -31,5 +31,15 @@ hr{
   height: 100vh;
 }
 img {
-  height: 100vh;
+  height: 100vh; 
+} */
+
+h1 {
+  margin-top: 3px;
+  font-weight :bold;
+  text-align: center;
+  border: 1px solid lightgray;
+}
+.col-divider{
+  border-right: 1px solid lightgray;
 }
